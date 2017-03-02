@@ -1,0 +1,171 @@
+/* CSS Document */
+
+
+.text_stylying
+	{
+	float:right;
+	width: 500px;
+	color: #FFF;
+	text-align:center;
+	vertical-align: middle;
+	
+	}
+	
+#backgroundColour
+{
+	background-color: #000;
+	float:left;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left:-10px;
+}
+	
+.former2
+	{
+	width:300px;
+	font-family: Bellerose;
+	color: #FFF;
+	float: right;
+	font-weight: bold;
+	margin: 50px;		
+	}
+.feedback_txt
+{
+	width:200px;
+	position:relative;
+	font-family: Bellerose;
+	float: left;
+	text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87;
+	
+	
+	}
+.tip
+{
+	width:400px;
+	position:relative;
+	font-family: Bellerose;
+	float: left;
+	
+	
+	
+	}
+.formButton
+{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	font-weight: bolder;
+	font-size: 14px;
+	background-color: #333;
+	border-color: #333;
+	border-width: 5px;
+	border-style: solid;
+	margin-top: 20px;
+}
+.login
+{
+
+	float: left;
+	font-family: Bellerose;
+	color: #FFF;
+	font-weight: bolder;
+	font-size: 25px;
+	left: 10px;
+}
+#disclaimer
+{
+	color: #CCC;
+	font-size: 10px;
+	font-family: Verdana, Geneva, sans-serif;
+	float: left;
+	position: relative;
+	left: 9%;
+	top: 21%;
+}
+#login
+{
+	position: relative;
+	left: 9%;
+	top: 20%;
+}
+#guestBtn
+{
+	display: inline-block;
+	position: relative;
+	left: 9%;
+	top: 27%;
+	width: 123px;
+	Height: 38px;
+	background-color: rgba(51, 51, 51, 0.8);
+	float: left;
+	color: #fba400;
+	text-align: top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 25px;
+	border: none;
+	}
+.textfield
+{
+	height: 300px;
+	width: 350px;	
+}
+.wrapper
+{
+	height: 100%;
+	width: 380px;
+	float: right;
+	position: absolute;
+	right: 0px;
+	background-color: rgba(50,50,50,0.5);
+		z-index: 20;
+}
+video#bgvid
+ {
+position: fixed; top: -17%; right: 0px; bottom: -28%;
+float:top;
+min-width: 100%; min-height: 100%;
+width: auto; height: auto; z-index: -100;
+background: url('myroom.jpg') no-repeat;
+background-size: cover;
+	z-index: 10;
+}
+
+
+.former
+	{
+	width:100px;
+	font-family: Bellerose;
+	color: #FFF;
+	float: right;
+	font-weight: bold;
+	position:absolute;
+	/*top:200px;*/
+	right:220px;
+	
+
+		
+	}
+.image_stylying
+	{	
+	top:8%;
+	position:absolute;
+	float:left;		
+		background-color:rgba(50,50,50,0.8);
+		animation:mymove 3s ;
+-webkit-animation:mymove 3s ; /* Safari and Chrome */
+	z-index: 30;
+}
+
+@keyframes mymove
+{
+from {left:-150px;}
+to {left:0%;}
+}
+
+@-webkit-keyframes mymove /* Safari and Chrome */
+{
+from {left:-150px}
+to {left:0%;}
+}
+	}*/
+	
