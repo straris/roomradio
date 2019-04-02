@@ -7,7 +7,7 @@ body{
 #mask
 {
 	width: 100%;
-	background-image: url("http://83.212.116.204/room.png");
+	background-image: url("room.png");
 	background-repeat: repeat;
 	height: 100%;
 	position: fixed;
@@ -179,11 +179,11 @@ input[type="submit"]{
 	background-position: center;
 	float: left;
 }
-.play{background: url('http://83.212.116.204/play.png') no-repeat;}
-.pause{background: url('http://83.212.116.204/pause.png') no-repeat;}
+.play{background: url('play.png') no-repeat;}
+.pause{background: url('pause.png') no-repeat;}
 
 #youtube{
-	background: url('http://83.212.116.204/youtube.png') no-repeat;
+	background: url('youtube.png') no-repeat;
 	position:relative;
 	top:53px;
 	right:59%;
@@ -196,7 +196,7 @@ input[type="submit"]{
 	float: right;
 }
 #winamp{
-	background: url('http://83.212.116.204/winamp.png') no-repeat;
+	background: url('winamp.png') no-repeat;
 	position:relative;
 	top:60px;
 	left:70%;
@@ -220,8 +220,8 @@ input[type="submit"]{
 	background-position: center;
 	float: right;
 }
-.mute{background: url('http://83.212.116.204/mute.png') no-repeat;}
-.unmute{background: url('http://83.212.116.204/unmute.png') no-repeat;}
+.mute{background: url('mute.png') no-repeat;}
+.unmute{background: url('unmute.png') no-repeat;}
 
 #player
 {
@@ -280,3 +280,4 @@ input[type="submit"]{
 	border: 0px solid #777;
 	border-radius: 3px;
 }
+
