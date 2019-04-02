@@ -7,26 +7,27 @@
       <link rel="stylesheet" type="text/css" href="mystyle.css">
    </head>
    <body>
+      <?php include_once('config.php') ?>
       <div  class="video">
          <video  autoplay="true" loop="loop"  id="bgvid">
-            <source src="http://83.212.116.204/radio.mp4" type="video/mp4">
+            <source src="<?php echo $server; ?>/radio.mp4" type="video/mp4">
          </video>
       </div>
       <div id="mask">
-         <div><img id="onAir" src="http://83.212.116.204/OnAir.jpg"alt="on Air" /></div>
+         <div><img id="onAir" src="<?php echo $server; ?>/OnAir.jpg"alt="on Air" /></div>
       </div>
       <div id="rightSide">
          <div id="player" >
             <audio id="music">
-               <source src="http://83.212.116.204:8000/listen.mp3" type="audio/mpeg" />
+               <?php echo "<source src='".$server."/listen.mp3' type='audio/mpeg' />"; ?>
             </audio>
-            <img src="http://83.212.116.204/image.jpg" id="image" />
+	    <?php echo "<img src='".$server."/image.jpg' id='image' />"; ?>
             <div id="metadata">
                <marquee id="marquee" scrollamount="3">
                </marquee>
             </div>
             <button id="pButton" class="play" onmouseup="playAudio()"></button>
-            <button type="submit" id="winamp" class="winamp" onclick="winamp('http://83.212.116.204/roomRadio.m3u')"></button>
+            <button type="submit" id="winamp" class="winamp" onclick="winamp('<?php echo $server; ?> /roomRadio.m3u')"></button>
             <button id="muteButton" class="mute" onmousedown="muteAudio()"></button>
             <button id="youtube" class="youtube" onmousedown="youtube()"></button>
             <div id="volumeContainer"  onmousemove="test()" >
@@ -142,7 +143,7 @@
       <script>
          $(document).ready(function(){
             
-                 $.get("http://roomradio.com/metadata.php", function(data, status){
+                 $.get("<?php echo $server; ?>/metadata.php", function(data, status){
                      var res = data.split("metaData=",2);
          			document.getElementById('marquee').innerHTML=res[1];
                  });
@@ -150,7 +151,7 @@
          });
          function get_request() {
             
-                 $.get("http://roomradio.com/metadata.php", function(data, status){
+                 $.get("<?php echo $server; ?>/metadata.php", function(data, status){
                      var res = data.split("metaData=",2);
          			var metadata= res[1].split("onAir=",2);
          			//window.alert(metadata[1]+metadata[0]);
@@ -192,7 +193,7 @@
             		
                  	var d = new Date();
             			var n = d.getTime();
-                     image.src="http://83.212.116.204/image.jpg?nocache="+n;
+                     image.src="<?php echo $server; ?>/image.jpg?nocache="+n;
          			 setTimeout( refresh_image, 20000 ); // <-- when you ge a response, call it  //        again after a 4 second delay                                       
          }
          refresh_image();
@@ -286,7 +287,7 @@
            FB.api('/me', function(response) {
          name=response.name;
          profile=response.link;
-         chat_container="http://roomradio.com/chatContainer.php?name="+encodeURIComponent(name)+"&profile="+profile+"&access_token="+access_token;
+         chat_container="<?php echo $server; ?>/chatContainer.php?name="+encodeURIComponent(name)+"&profile="+profile+"&access_token="+access_token;
          $('#container').load(chat_container);
          return false;
            });

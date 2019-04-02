@@ -1,8 +1,9 @@
-\\﻿<?php
+﻿<?php
 header('Access-Control-Allow-Origin: *');
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-include_once('config.php');
+include_once('connect_to_mysql.php');
+
 /*
  * SCRIPT CONFIGURATIONS
 */
@@ -97,67 +98,15 @@ function get_url_contents($url) {
     return $ret;
 }
 
-echo "<script>console.log( 'Debug Objects: " . $imageQuery . "' );</script>";
-$imageLinksArray = [];
-$imageExists = false;
-if (($h = fopen("imageLinks.csv", "r")) !== FALSE) 
-{
-  while (($data =fgetcsv($h, 1000, ",")) !== FALSE)
-  {
-    $imageLinksArray[] = $data;
-  }
-  fclose($h);
-}
 
-for ($i = 0; $i < count($imageLinksArray); $i++) {
-  if ($imageQuery == $imageLinksArray[$i][0])
-  {
-    $imageExists=true;
-    $contents=$imageLinksArray[$i][1];
-    break;
-  }
+// print "$imageQuery";
 
-}
+$q="SELECT * FROM images WHERE image='$imageQuery'";
+$r=mysql_query($q) or die ("could not check the user due to:".mysql_error());
 
-if ($imageExists == false)
-{
-        $url ='https://www.googleapis.com/customsearch/v1?key=AIzaSyAliM8GjxXcPKMkZiPiDxlGhLI25mZHhsU&cx=016998421560717524457:0bctl8e-qsm&q='. trim($imageQuery).'&searc$';
-        function get_url_contents2($url){
-                $crl = curl_init();
-                $timeout = 5;
-                curl_setopt ($crl, CURLOPT_URL,$url);
-                curl_setopt ($crl, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt ($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
-                $ret = curl_exec($crl);
-                curl_close($crl);
-                return $ret;
-        }
-        $json = get_url_contents2($url);
-        $data = json_decode($json);
-        if ($json!=null){
-                $i = 0;
-                foreach ($data->items as $item) {
-                        if ($i++ > 0) break;
-                        $contents= $item->link;
-                }
-                $imageLinksArray[sizeof($imageLinksArray)][0] = $imageQuery;
-                $imageLinksArray[sizeof($imageLinksArray)][1] = $item->link;
-                $fp = fopen('imageLinks.csv', 'w');
+$answers=mysql_num_rows($r);
 
-                foreach ($imageLinksArray as $fields) {
-                  fputcsv($fp, $fields);
-                }
-
-                fclose($fp);
-        }
-}
-
-//$q="SELECT * FROM images WHERE image='$imageQuery'";
-//$r=mysql_query($q) or die ("could not check the user due to:".mysql_error());
-
-//$answers=mysql_num_rows($r);
-
-/*if ($answers==0)
+if ($answers==0)
 {
 	$url ='https://www.googleapis.com/customsearch/v1?key=AIzaSyAliM8GjxXcPKMkZiPiDxlGhLI25mZHhsU&cx=016998421560717524457:0bctl8e-qsm&q='. trim($imageQuery).'&searchType=image&fileType=jpg&alt=json';
 	function get_url_contents2($url){
@@ -190,9 +139,9 @@ else
 		}
 	
 }
-*/
 
-$pointer = file_get_contents('/var/www/roomradio/pointer.txt');
+
+$pointer = file_get_contents('http://83.212.116.204/pointer.txt');
 
 
 if ($contents != null and $pointer=='random')
