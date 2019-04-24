@@ -3,8 +3,9 @@
 $songData = file_get_contents('/var/www/roomradio/songtitle.txt');
 
 preg_match('/([a-zA-Z])(.*)(?=\ -)/',$songData, $artist);
-$imageQuery=str_replace(' ', '+', $artist[0]);
-$imageQuery=$imageQuery."+artwork";
+$imageQuery=str_replace(' ', '%20', $artist[0]);
+$imageQuery=$imageQuery."%20artwork";
+
 
 function get_url_contents($url) {
     $crl = curl_init();
@@ -42,7 +43,7 @@ for ($i = 0; $i < count($imageLinksArray); $i++) {
 
 if ($imageExists == false)
 {
-        $url ='https://www.googleapis.com/customsearch/v1?key=AIzaSyAliM8GjxXcPKMkZiPiDxlGhLI25mZHhsU&cx=016998421560717524457:0bctl8e-qsm&q='. trim($imageQuery).'&searchType=image&fileType=jpg';
+        $url ='https://www.googleapis.com/customsearch/v1?key=AIzaSyAliM8GjxXcPKMkZiPiDxlGhLI25mZHhsU&cx=016998421560717524457:0bctl8e-qsm&q='. trim($imageQuery).'&searc$';
         function get_url_contents2($url){
                 $crl = curl_init();
                 $timeout = 5;
@@ -57,11 +58,11 @@ if ($imageExists == false)
         $data = json_decode($json);
         if ($json!=null){
                 $i = 0;
-		if (!empty($data->items[0]->link)) {
-		  $imgUrl = $data->items[0]->link;
+		if (!empty($data->items[0]->pagemap->cse_image[0]->src)) {
+		  $imgUrl = $data->items[0]->pagemap->cse_image[0]->src;
 		}
 		else {
-		 print("Url not returned");
+		 print("Url not returned, instead: ".$data->items[0]->pagemap->cse_image[0]->src);
 		}
                 $imageData[0] = $imageQuery;
                 $imageData[1] = $imgUrl;

@@ -142,29 +142,15 @@
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <script>
          $(document).ready(function(){
-            
-                 $.get("<?php echo $server; ?>/metadata.php", function(data, status){
-                     var res = data.split("metaData=",2);
-         			document.getElementById('marquee').innerHTML=res[1];
-                 });
-            
+		if (!!window.EventSource) {
+                        var source = new EventSource('stream.php');
+                } else {
+                // Result to xhr polling :(
+                }
+                source.addEventListener('message', function(e) {
+                        document.getElementById('marquee').innerHTML=e.data;
+                }, false);
          });
-         function get_request() {
-            
-                 $.get("<?php echo $server; ?>/metadata.php", function(data, status){
-                     var res = data.split("metaData=",2);
-         			var metadata= res[1].split("onAir=",2);
-         			//window.alert(metadata[1]+metadata[0]);
-         			document.getElementById('marquee').innerHTML=metadata[0];
-         			if (metadata[1]=="true"){
-         			document.getElementById('onAir').style.visibility='visible';
-         			}
-         			else
-         			document.getElementById('onAir').style.visibility='hidden';
-         			 setTimeout( get_request, 15000 ); // <-- when you ge a response, call it  //        again after a 4 second delay                                       
-                 });   
-         }
-         get_request();  // <-- start it off
          ////////////////////////
          function youtube()
          {
